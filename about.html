@@ -163,7 +163,8 @@ footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-s
 
 <section class="container reveal" id="contact">
   <div class="section-head"><div><div class="kicker">Contact</div><h2>Let's talk about your store.</h2></div><p>Use the form to prepare an email inquiry, or use the quick contact buttons below.</p></div>
-  <form class="form" action="https://formspree.io/f/maennkbq" method="POST">
+  <form class="form" action="https://formspree.io/f/maennkbq" method="POST"><input type="hidden" name="subject" value="New Shopify Project Inquiry">
+
     <label>Your Name<input id="name" name="name" required placeholder="Your name"></label>
     <label>Your Email<input id="email" name="email" type="email" required placeholder="you@example.com"></label>
     <label>How can I help?<textarea id="message" name="message" required placeholder="Tell me about your Shopify store and what you need"></textarea></label>
