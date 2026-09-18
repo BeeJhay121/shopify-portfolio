@@ -163,10 +163,10 @@ footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-s
 
 <section class="container reveal" id="contact">
   <div class="section-head"><div><div class="kicker">Contact</div><h2>Let's talk about your store.</h2></div><p>Use the form to prepare an email inquiry, or use the quick contact buttons below.</p></div>
-  <form class="form" onsubmit="sendMessage(event)">
-    <label>Your Name<input id="name" required placeholder="Your name"></label>
-    <label>Your Email<input id="email" type="email" required placeholder="you@example.com"></label>
-    <label>How can I help?<textarea id="message" required placeholder="Tell me about your Shopify store and what you want to improve."></textarea></label>
+  <form class="form" action="https://formspree.io/f/maennkbq" method="POST">
+    <label>Your Name<input id="name" name="name" required placeholder="Your name"></label>
+    <label>Your Email<input id="email" name="email" type="email" required placeholder="you@example.com"></label>
+    <label>How can I help?<textarea id="message" name="message" required placeholder="Tell me about your Shopify store and what you need"></textarea></label>
     <button class="btn primary" type="submit">Send Inquiry →</button>
   </form>
   <div class="actions" style="margin-top:18px">
