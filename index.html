@@ -43,7 +43,26 @@ h1{font-size:clamp(3rem,7vw,6rem);line-height:.95;letter-spacing:-.065em;max-wid
 .gradient{background:linear-gradient(120deg,#fff 20%,#b8e56a 75%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .lead{color:var(--muted);font-size:1.08rem;max-width:620px;margin:24px 0 30px}
 .actions{display:flex;gap:12px;flex-wrap:wrap}
-.hero-photo{width:min(430px,90vw);aspect-ratio:1;border-radius:50%;object-fit:cover;border:10px solid rgba(255,255,255,.04);box-shadow:0 0 0 1px rgba(149,191,71,.25),var(--shadow);justify-self:center;animation:photoFloat 6s ease-in-out infinite}
+.hero-photo {
+    width: 360px !important;
+    height: 450px !important;
+    max-width: 360px !important;
+    max-height: 450px !important;
+    object-fit: cover;
+    border-radius: 24px;
+    display: block;
+}
+
+.profile .hero-photo {
+    width: 360px !important;
+    height: 450px !important;
+    max-width: 360px !important;
+    object-fit: cover;
+    border-radius: 24px;
+    display: block;
+    margin: 0 auto;
+}
+
 @keyframes photoFloat{50%{transform:translateY(-12px)}}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:45px}
 .stat{padding:18px;border:1px solid var(--line);background:var(--card);border-radius:16px}
@@ -136,7 +155,7 @@ footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-s
       <div class="stat"><strong>Creative</strong><span>AI product ad content</span></div>
     </div>
   </div>
-  <div class="reveal"><img src="./images/Owner.png" alt="Shopify portfolio owner"></div>
+  <img class="hero-photo" src="./images/Owner.png" alt="Shopify portfolio owner" style="width:360px !important;height:450px !important;max-width:360px !important;max-height:450px !important;object-fit:cover !important;">
 </section>
 
 <section class="container reveal">
