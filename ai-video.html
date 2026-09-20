@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Video Showcase | ShopifyCraft</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0b0b0b;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* NAVIGATION */
+        .navbar {
+            width: 100%;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #222;
+            background: #0b0b0b;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: #95ff00;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ccc;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #95ff00;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 100px 7% 70px;
+            text-align: center;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(149,255,0,0.13), transparent 40%);
+        }
+
+        .hero-label {
+            color: #95ff00;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 7vw, 78px);
+            line-height: 1;
+            max-width: 900px;
+            margin: auto;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #95ff00;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: auto;
+            color: #aaa;
+            font-size: 18px;
+        }
+
+        /* FILTERS */
+        .filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 20px 7% 50px;
+        }
+
+        .filter-btn {
+            background: #151515;
+            border: 1px solid #333;
+            color: #ccc;
+            padding: 12px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #95ff00;
+            border-color: #95ff00;
+            color: #000;
+        }
+
+        /* VIDEO GRID */
+        .video-section {
+            padding: 0 7% 100px;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .video-card {
+            background: #141414;
+            border: 1px solid #252525;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: 0.35s;
+        }
+
+        .video-card:hover {
+            transform: translateY(-7px);
+            border-color: #95ff00;
+        }
+
+        /* VIDEO */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #050505;
+            overflow: hidden;
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* VIDEO INFO */
+        .video-info {
+            padding: 22px;
+        }
+
+        .category {
+            color: #95ff00;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .video-info h3 {
+            font-size: 24px;
+            margin: 7px 0 10px;
+        }
+
+        .video-info p {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 18px;
+        }
+
+        .project-btn {
+            display: inline-block;
+            padding: 11px 18px;
+            background: #95ff00;
+            color: #000;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .project-btn:hover {
+            transform: translateY(-2px);
+            background: #ffffff;
+        }
+
+        /* CTA */
+        .cta {
+            margin: 0 7% 80px;
+            padding: 70px 30px;
+            text-align: center;
+            background: linear-gradient(135deg, #151515, #101010);
+            border: 1px solid #292929;
+            border-radius: 25px;
+        }
+
+        .cta h2 {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            color: #999;
+            max-width: 600px;
+            margin: 0 auto 25px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: #95ff00;
+            color: #000;
+            padding: 14px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        /* HIDDEN */
+        .hidden {
+            display: none;
+        }
+
+        /* MOBILE */
+        @media (max-width: 800px) {
+
+            .navbar {
+                padding: 18px 5%;
+            }
+
+            .nav-links {
+                gap: 12px;
+                font-size: 13px;
+            }
+
+            .hero {
+                padding: 70px 5% 50px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .video-section {
+                padding: 0 5% 70px;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta {
+                margin: 0 5% 60px;
+            }
+
+            .cta h2 {
+                font-size: 30px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .filter-btn {
+                font-size: 12px;
+                padding: 10px 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+            Shopify<span>Craft</span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="ai-videos.html">AI Videos</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-label">
+            AI Creative Studio
+        </div>
+
+        <h1>
+            AI videos that make people
+            <span>stop scrolling.</span>
+        </h1>
+
+        <p>
+            Product ads, animated stories, cinematic campaigns and
+            explainer videos created for modern brands and businesses.
+        </p>
+
+    </section>
+
+
+    <!-- FILTERS -->
+
+    <div class="filters">
+
+        <button class="filter-btn active" data-filter="all">
+            All Videos
+        </button>
+
+        <button class="filter-btn" data-filter="ugc">
+            AI UGC Product
+        </button>
+
+        <button class="filter-btn" data-filter="cartoon">
+            AI Cartoon
+        </button>
+
+        <button class="filter-btn" data-filter="cinematic">
+            AI Cinematic
+        </button>
+
+        <button class="filter-btn" data-filter="explainer">
+            AI Explainer
+        </button>
+
+    </div>
+
+
+    <!-- VIDEO GALLERY -->
+
+    <section class="video-section">
+
+        <div class="video-grid">
+
+
+            <!-- AI UGC PRODUCT VIDEO -->
+
+            <article class="video-card" data-category="ugc">
+
+                <div class="video-wrapper">
+
+                    <video controls preload="metadata">
+                        <source src="AI VIDEO/Urban Step.mp4" type="video/mp4">
+                    </video>
+
+                </div>
+
+                <div class="video-info">
+
+                    <div class="category">
+                        AI UGC Product Video
+                    </div>
+
+                    <h3>
+                        Product Advertisement
+                    </h3>
+
+                    <p>
+                        Realistic AI product content designed for
+                        social media and paid advertising.
+                    </p>
+
+                    <a href="about.html#contact" class="project-btn">
+                        Create Similar Video →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- AI CARTOON VIDEO -->
+
+            <article class="video-card" data-category="cartoon">
+
+                <div class="video-wrapper">
+
+                    <video controls preload="metadata">
+                        <source src="AI VIDEO/Untitled design (2).mp4" type="video/mp4">
+                    </video>
+
+                </div>
+
+                <div class="video-info">
+
+                    <div class="category">
+                        AI Cartoon Video
+                    </div>
+
+                    <h3>
+                        Animated Brand Story
+                    </h3>
+
+                    <p>
+                        Creative AI animation and character storytelling
+                        for brands and social media.
+                    </p>
+
+                    <a href="about.html#contact" class="project-btn">
+                        Create Similar Video →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- AI CINEMATIC STORYTELLING -->
+
+            <article class="video-card" data-category="cinematic">
+
+                <div class="video-wrapper">
+
+                    <video controls preload="metadata">
+                        <source src="AI VIDEO/BeeJhay AI.mp4" type="video/mp4">
+                    </video>
+
+                </div>
+
+                <div class="video-info">
+
+                    <div class="category">
+                        AI Cinematic Storytelling
+                    </div>
+
+                    <h3>
+                        Cinematic Brand Story
+                    </h3>
+
+                    <p>
+                        Cinematic AI visuals created to communicate
+                        stories, emotions and brand ideas.
+                    </p>
+
+                    <a href="about.html#contact" class="project-btn">
+                        Create Similar Video →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- AI EXPLAINER VIDEO -->
+
+            <article class="video-card" data-category="explainer">
+
+                <div class="video-wrapper">
+
+                    <video controls preload="metadata">
+                        <source src="AI VIDEO/Why AI Video Matters for Brands.mp4" type="video/mp4">
+                    </video>
+
+                </div>
+
+                <div class="video-info">
+
+                    <div class="category">
+                        AI Explainer Video
+                    </div>
+
+                    <h3>
+                        Product Explainer
+                    </h3>
+
+                    <p>
+                        Clear and engaging AI explainer videos
+                        for products, services and businesses.
+                    </p>
+
+                    <a href="about.html#contact" class="project-btn">
+                        Create Similar Video →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- CTA -->
+
+    <section class="cta">
+
+        <h2>
+            Have a product that needs attention?
+        </h2>
+
+        <p>
+            Let's create an AI-powered video that presents your
+            product in a way your audience remembers.
+        </p>
+
+        <a href="about.html#contact" class="cta-btn">
+            Start a Project →
+        </a>
+
+    </section>
+
+
+    <!-- FILTER JAVASCRIPT -->
+
+    <script>
+
+        const filterButtons =
+            document.querySelectorAll(".filter-btn");
+
+        const videoCards =
+            document.querySelectorAll(".video-card");
+
+
+        filterButtons.forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                filterButtons.forEach(btn => {
+                    btn.classList.remove("active");
+                });
+
+                button.classList.add("active");
+
+                const filter =
+                    button.getAttribute("data-filter");
+
+
+                videoCards.forEach(card => {
+
+                    const category =
+                        card.getAttribute("data-category");
+
+
+                    if (filter === "all" || category === filter) {
+
+                        card.classList.remove("hidden");
+
+                    } else {
+
+                        card.classList.add("hidden");
+
+                    }
+
+                });
+
+            });
+
+        });
+
+    </script>
+
+</body>
+</html> 
